@@ -37,17 +37,17 @@ Una aplicación web moderna y elegante para cargar, visualizar y analizar archiv
 
 1. **Clona el repositorio**
 
-   ```bash
-   git clone https://github.com/tu-usuario/lector-csv.git
-   cd lector-csv
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   # or
-   bun dev
-   ```
+```bash
+git clone https://github.com/tu-usuario/lector-csv.git
+cd lector-csv
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
 2. **Instala las dependencias**
 
