@@ -5,14 +5,13 @@ import { parse } from 'csv-parse/browser/esm/sync';
 
 // Componentes
 import FileUploader from '../components/FileUploader';
-
+import ThemeToggle from '../components/ThemeToggle';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 import SearchBar from '../components/SearchBar';
 import ColumnSelector from '../components/ColumnSelector';
 import DataTable from '../components/DataTable';
 import Pagination from '../components/Pagination';
-import HeaderSection from '@/components/HeaderSection';
 
 export default function CSVViewer() {
   // Estados
@@ -29,7 +28,8 @@ export default function CSVViewer() {
   const [currentPage, setCurrentPage] = useState(1);
   const [visibleColumns, setVisibleColumns] = useState([]);
   const [showColumnSelector, setShowColumnSelector] = useState(false);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  const itemsPerPage = 10;
 
   // Funciones
   const handleFileUpload = useCallback(async (event) => {
@@ -81,11 +81,6 @@ export default function CSVViewer() {
     }
   }, []);
 
-  const handleItemsPerPageChange = useCallback((newItemsPerPage) => {
-    setItemsPerPage(newItemsPerPage);
-    setCurrentPage(1); // Reset to first page when changing items per page
-  }, []);
-
   const resetData = useCallback(() => {
     setData([]);
     setHeaders([]);
@@ -96,7 +91,6 @@ export default function CSVViewer() {
     setSearchTerm('');
     setSortConfig({ column: null, direction: 'asc' });
     setShowColumnSelector(false);
-    setItemsPerPage(10);
   }, []);
 
   const handleSort = useCallback((column) => {
@@ -159,7 +153,19 @@ export default function CSVViewer() {
     <div className="min-h-screen bg-gray-50 py-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <HeaderSection />
+        <div className="text-center mb-8">
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex-1">
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">
+                Lector de CSV
+              </h1>
+              <p className="text-lg text-gray-600">
+                Carga, visualiza y analiza tus archivos CSV de forma sencilla
+              </p>
+            </div>
+            <ThemeToggle />
+          </div>
+        </div>
 
         {/* File Uploader */}
         <FileUploader
@@ -216,7 +222,6 @@ export default function CSVViewer() {
                   totalItems={filteredAndSortedData.length}
                   itemsPerPage={itemsPerPage}
                   onPageChange={setCurrentPage}
-                  onItemsPerPageChange={handleItemsPerPageChange}
                 />
               </div>
             )}

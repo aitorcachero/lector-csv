@@ -5,7 +5,7 @@ import { parse } from 'csv-parse/browser/esm/sync';
 
 // Componentes
 import FileUploader from '../components/FileUploader';
-
+import ThemeToggle from '../components/ThemeToggle';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 import SearchBar from '../components/SearchBar';
